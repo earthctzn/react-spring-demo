@@ -7,14 +7,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles'
-
+import { Spring } from 'react-spring/renderprops'
 const useStyles = makeStyles({
-    textStyles: {
-        textAlign: "center"
-    },
-    buttonStyles: {
-        justifyContent: "center"
-    }
+    textStyles: { textAlign: "center" },
+    buttonStyles: { justifyContent: "center" }
 });
 
 function CounterInput(props){
@@ -22,34 +18,43 @@ function CounterInput(props){
     const handleOnClick = (e) => {
         e.preventDefault()
         if(e.target.innerText === 'UP') {
-          props.increaseCount()  
+            props.increaseCount()  
         }else{
             props.decreaseCount()
         }
     }
     const classes = useStyles(props)
     return(
-        <Card>
-            <CardHeader className={classes.textStyles} title="Up Click Count"/>
-            <CardContent className={classes.textStyles} component='h1'>
-                {props.count}
-            </CardContent>
-            
-            <CardActions className={classes.buttonStyles}>
-                <Button 
-                    name="up"
-                    color='primary'
-                    variant='outlined'                
-                    onClick={e => handleOnClick(e)}
-                >Up</Button>
-                <Button                
-                    name="down"
-                    color='primary'
-                    variant='outlined'
-                    onClick={e => handleOnClick(e)}
-                >Down</Button>
-            </CardActions>
-        </Card>
+        <Spring
+            from={{ marginTop: '-250px'}}
+            to={{ marginTop: '20px'}}
+            config={{ delay: 2000 }}
+        
+        >{ args => 
+            <Card style={args}>
+                <CardHeader className={classes.textStyles} title="Up Click Count"/>
+                <CardContent className={classes.textStyles} component='h1'>
+                    {props.count}
+                </CardContent>
+                
+                <CardActions className={classes.buttonStyles}>
+                    <Button 
+                        name="up"
+                        color='primary'
+                        variant='outlined'                
+                        onClick={e => handleOnClick(e)}
+                    >Up</Button>
+                    <Button                
+                        name="down"
+                        color='primary'
+                        variant='outlined'
+                        onClick={e => handleOnClick(e)}
+                    >Down</Button>
+                </CardActions>
+            </Card>
+        }
+        </Spring>
+
     )   
 }
 
@@ -64,46 +69,49 @@ export default connect(mapStateToProps, {
 })(CounterInput);
 
 
-
-
-
+// import { Spring } from 'react-spring/renderprops'
 // function CounterInput(props){
     
 //     const handleOnClick = (e) => {
-//          e.preventDefault()
-//          if(e.target.innerText === 'UP') {
-//            props.increaseCount()  
-//          }else{
-//              props.decreaseCount()
-//          }
-//      }
- 
-//      const classes = useStyles(props)  
-//      return(
-//          <Card>
-//              <CardHeader className={classes.textStyles} title="Up click counter" />
-     
-//              <Card className={classes.textStyles}>
-//                  <Typography variant="h3" component='h3' >
-//                      {props.count}
-//                  </Typography>
-//              </Card>
-         
-//              <CardActions className={classes.buttonStyles}>
-//                  <Button 
-//                      name="up"
-//                      color='primary'
-//                      variant='outlined'
-//                      onClick={e => handleOnClick(e)}
-//                  >Up</Button>
-//                  <Button                
-//                      name="down"
-//                      color='primary'
-//                      variant="outlined"
-//                      onClick={e => handleOnClick(e)}
-//                  >Down</Button>
-//              </CardActions>
- 
-//          </Card>
-//      )   
-//  }
+//         e.preventDefault()
+//         if(e.target.innerText === 'UP') {
+//           props.increaseCount()  
+//         }else{
+//             props.decreaseCount()
+//         }
+//     }
+//     const classes = useStyles(props)
+//     return(
+//         <Spring
+//             from={{ marginTop: '-250px'}}
+//             to={{ marginTop: '20px'}}
+//             config={{ delay: 2000 }}
+        
+//         >{ props => 
+//             <Card style={props}>
+//                 <CardHeader className={classes.textStyles} title="Up Click Count"/>
+//                 <CardContent className={classes.textStyles} component='h1'>
+//                     {props.count}
+//                 </CardContent>
+                
+//                 <CardActions className={classes.buttonStyles}>
+//                     <Button 
+//                         name="up"
+//                         color='primary'
+//                         variant='outlined'                
+//                         onClick={e => handleOnClick(e)}
+//                     >Up</Button>
+//                     <Button                
+//                         name="down"
+//                         color='primary'
+//                         variant='outlined'
+//                         onClick={e => handleOnClick(e)}
+//                     >Down</Button>
+//                 </CardActions>
+//             </Card>
+//         }
+//         </Spring>
+
+//     )   
+// }
+
