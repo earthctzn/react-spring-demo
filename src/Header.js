@@ -23,8 +23,9 @@ const Header = () => {
     const classes = useStyles()
     return(
         <Spring
-            from={{ marginTop: '-90px' }}
+            from={{ marginTop: '-150px' }}
             to={{ marginTop: '0px' }}
+            config={{ duration: 1000 }}
         >
             {props => (
                 <AppBar style={props} position='static'>

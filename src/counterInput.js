@@ -28,7 +28,7 @@ function CounterInput(props){
         <Spring
             from={{ marginTop: '-250px'}}
             to={{ marginTop: '20px'}}
-            config={{ delay: 2000 }}
+            config={{ delay: 2000, duration: 500 }}
         
         >{ args => 
             <Card style={args}>
